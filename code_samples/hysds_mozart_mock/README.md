@@ -47,7 +47,7 @@ curl -X GET "http://localhost:6060/job_count" -H  "accept: application/json"
 * The above endpoint can be easily secured with the help of an AWS REST API Gateway.
 
 * The following GitHub URL contains YAML files that can be used to deploy an AWS REST API Gateway.
-https://github.com/unity-sds/unity-cs-security/tree/main/code-samples/aws-api-gateway-rest 
+https://github.com/unity-sds/unity-cs-security/tree/main/code_samples/aws_rest_api_gateway 
 
 * Before deploying this mock API on AWS, please make sure to change the port number to port 80 as follows in the `app.py`.
 ```python

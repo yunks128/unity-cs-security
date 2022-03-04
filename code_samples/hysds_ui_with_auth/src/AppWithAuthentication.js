@@ -46,11 +46,11 @@ const authService = new AuthService({
 function hasUserGroup(accessToken, userGroup) {
     let accessTokenDecoded = jwt_decode(accessToken);
     let cognitoGroups = accessTokenDecoded["cognito:groups"].toString();
-    let roles = cognitoGroups.split(',').map(function(item) {
+    let userGroupsArray = cognitoGroups.split(',').map(function(item) {
         return item.trim();
     });
 
-    return roles.includes(userGroup);
+    return userGroupsArray.includes(userGroup);
 }
 
 /**

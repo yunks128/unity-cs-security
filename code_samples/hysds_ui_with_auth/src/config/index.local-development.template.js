@@ -18,7 +18,7 @@ exports.MOZART_ES_URL = "http://localhost:9998";
 exports.MOZART_ES_INDICES = "job_status";
 
 // Mozart's Rest API
-exports.MOZART_REST_API_BASE = "http://localhost:8888";
+exports.MOZART_REST_API_BASE = "<AWS_API_GATEWAY_URL>/mozart_rest_api";
 exports.MOZART_REST_API_V1 = `${this.MOZART_REST_API_BASE}/api/v0.1`;
 exports.MOZART_REST_API_V2 = `${this.MOZART_REST_API_BASE}/api/v0.2`;
 
@@ -32,3 +32,10 @@ exports.RABBIT_MQ_PORT = 15673;
 // root path for app
 // set to "/" if you are developing locally
 exports.ROOT_PATH = "/";
+
+// OAuth2 configs
+exports.OAUTH2_CLIENT_ID = "<ADD_CLIENT_ID_HERE>";
+exports.OAUTH2_REDIRECT_URI = "http://localhost:8080";
+exports.OAUTH2_PROVIDER_URL = "<COGNITO_USER_POOL_DOMAIN_URL>/oauth2";
+exports.APP_VIEWER_GROUP_NAME = "Unity_Viewer";
+exports.APP_ADMIN_GROUP_NAME = "Unity_Viewer";

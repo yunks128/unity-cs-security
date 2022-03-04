@@ -27,9 +27,19 @@ This code sample implements Auth 2.0 Authorization Code Grant with the PKCE base
 - Node (>=6 & < 13) installed on machine
 - npm installed
 
-## Update Config File
+## Create Config Files
 
-Update the following settings to match with your setup.
+```bash
+# create config file (if developing locally)
+cp src/config/index.local-development.template.js src/config/index.js
+
+cp src/config/figaro.template.js src/config/figaro.js
+cp src/config/tosca.template.js src/config/tosca.js
+```
+
+## Update index.js Config File
+
+Update the following settings in `config/index.js` to match with your setup.
 
 #### **`config/index.js`**
 ```js

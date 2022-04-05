@@ -1,9 +1,10 @@
-// A token-based authorizer example to demonstrate how to use an authorization token
-// to allow or deny a request.
+// A token-based authorizer example to demonstrate how to use an authorization token to allow or deny a request.
 
 const { CognitoJwtVerifier } = require("aws-jwt-verify");
 
-
+/**
+ * Verifies a JWT token and check Cognito groups.
+ */
 exports.handler =  async(event, context, callback) => {
     var token = event.authorizationToken;
     console.log(token);
@@ -37,7 +38,6 @@ exports.handler =  async(event, context, callback) => {
             clientId: "27pg890k87o2nhd6p8puashvs1",
         });
 
-
     try {
         const payload = await verifier.verify(accessToken);
         console.log("Token is valid. Payload:", payload);
@@ -46,7 +46,6 @@ exports.handler =  async(event, context, callback) => {
         console.log(error);
         callback("Unauthorized");
     }
-
 
     // Verify the claims
 
@@ -77,7 +76,9 @@ exports.handler =  async(event, context, callback) => {
 
 };
 
-// Help function to generate an IAM policy
+/**
+ * Helper function to generate an IAM policy.
+ */
 var generatePolicy = function(principalId, effect, resource) {
     var authResponse = {};
 
@@ -103,7 +104,9 @@ var generatePolicy = function(principalId, effect, resource) {
     return authResponse;
 }
 
-
+/**
+ * Parses a JWT token.
+ */
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

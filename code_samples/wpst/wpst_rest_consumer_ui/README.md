@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# A Sample ReactJS Application with Cognito Authentication to Access SPS-T Endpoints 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Following steps can be used to start this application.
 
-## Available Scripts
+1) Clone the sample source code from https://github.com/unity-sds/unity-cs-security
 
-In the project directory, you can run:
+```shell
+git clone https://github.com/unity-sds/unity-cs-security.git
+```
 
-### `npm start`
+Note: If you want to try this in an EC2 instance on AWS, you may clone the source code inside
+the EC2 instance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2) Change the current directory to `https://github.com/unity-sds/`unity-cs-security/tree/main/code_samples/wpst/wpst_rest_consumer_ui`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```shell
+cd unity-cs-security/tree/main/code_samples/wpst/wpst_rest_consumer_ui
+```
 
-### `npm test`
+3) Open the `/src/config/index.js` file.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+vi /src/config/index.js
+```
 
-### `npm run build`
+4) Update the `/src/config/index.js` file with correct configurations (you may contact the Unity CS team to get
+the configurations. Tell you need `<COGNITO_CLIENT_ID>` and `<COGNITO_REDIRECT_URL>` for `wpst-client` Client App in Unity Cognito User Pool and also the `<API_GATEWAY_BASE_URL>`).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+/ OAuth2 configs
+exports.OAUTH2_CLIENT_ID = "<COGNITO_CLIENT_ID>";
+exports.OAUTH2_REDIRECT_URI = "<COGNITO_REDIRECT_URL>";
+exports.OAUTH2_PROVIDER_URL = "https://unity.auth.us-west-2.amazoncognito.com/oauth2";
+exports.APP_VIEWER_GROUP_NAME = "Unity_Viewer";
+exports.APP_ADMIN_GROUP_NAME = "Unity_Viewer";
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+// WPS-T Endpoint
+exports.WPST_ENDPOINT_BASE_URL = "https://<API_GATEWAY_BASE_URL>/dev/ades_wpst";
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Note: In the test setup used to develop this application, an AWS Application Load Balancer (ALB) was
+used in front of the EC2 instance used to host the sample ReactJS application. Therefore, the
+App Client in Cognito USer Pool was configured by giving this ALB URL as a Callback URL.
 
-### `npm run eject`
+6) Execute following command to run the application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```shell
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+7) Access the application in a web browser (Note: in this example an ALB URL was used to access the sample
+ReactJS application). Ignore the certificate error given due to the self-signed certificate and 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![](https://github.com/unity-sds/unity-cs-security/blob/main/code_samples/wpst/screenshots/sample_reactjs_app/wpst-sample-reactjs-app-login.png)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+8) Press "Login with Cognito".
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+9) Enter your Unity Cognito User Pool username and password.
 
-### Code Splitting
+![](https://github.com/unity-sds/unity-cs-security/blob/main/code_samples/wpst/screenshots/sample_reactjs_app/wpst-sample-reactjs-app-cognito-login.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+10) The page will be redirected to the home page of the sample ReactJS App.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![](https://github.com/unity-sds/unity-cs-security/blob/main/code_samples/wpst/screenshots/sample_reactjs_app/wpst-sample-reactjs-app-home-page.png)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Notes: 
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- If the page does not show WPS-T data, most probably you do not have any data 
+loaded in the WPS-T endpoints. 
+- You may Contact the development team of the WPS-T endpoints and get details on loading the 
+WPS-T endpoint with data. 
+- In this case, you have to pass an access token as an Authorization header (as `Bearer access_token`) while making 
+a POST request to load data to WPS-T endpoints (these end points are available in Unity API Gateway).
+- An access token can be obtained by following the instructions in https://github.com/unity-sds/unity-cs/wiki/Getting-Cognito-JWT-Tokens-in-Command-Line (make sure to use the same WPS-T client specific  <COGNITO_CLIENT_ID> used in steps above).
+- Alternatively, if you have successfully logged in to the sample ReactJS App above, you may use the `Inspect` menu of the web browser, check Storage -> Local Storage - Click on the URL and get the access token. 

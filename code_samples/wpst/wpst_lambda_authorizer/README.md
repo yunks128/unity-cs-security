@@ -4,4 +4,4 @@ endpoint setup in the Unity API Gateway.
 
 This lambda authorizer is used in the Unity API Gateway to enable authentication and authorization as shown in the screenshot below.
 
-![](https://github.com/unity-sds/unity-cs-security/blob/main/code_samples/wpst/screenshots/authorizer/wpst-sample-eactjs-app-cognito-login.png)
+![](https://github.com/unity-sds/unity-cs-security/blob/main/code_samples/wpst/screenshots/authorizer/wpst_authorizer.png)

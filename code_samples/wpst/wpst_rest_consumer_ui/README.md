@@ -11,16 +11,16 @@ git clone https://github.com/unity-sds/unity-cs-security.git
 Note: If you want to try this in an EC2 instance on AWS, you may clone the source code inside
 the EC2 instance.
 
-2) Change the current directory to `unity-cs-security/tree/main/code_samples/wpst/wpst_rest_consumer_ui`.
+2) Change the current directory to `unity-cs-security/code_samples/wpst/wpst_rest_consumer_ui`.
 
 ```shell
-cd unity-cs-security/tree/main/code_samples/wpst/wpst_rest_consumer_ui
+cd unity-cs-security/code_samples/wpst/wpst_rest_consumer_ui
 ```
 
 3) Open the `/src/config/index.js` file.
 
 ```shell
-vi /src/config/index.js
+vi src/config/index.js
 ```
 
 4) Update the `/src/config/index.js` file with the correct configurations (you may contact the Unity CS team to get

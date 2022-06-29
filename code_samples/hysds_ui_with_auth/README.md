@@ -39,7 +39,7 @@ cp src/config/tosca.template.js src/config/tosca.js
 
 ## Update index.js Config File
 
-Update the following settings in `config/index.js` to match with your setup.
+Update the following settings in `src/config/index.js` to match with your setup.
 
 #### **`config/index.js`**
 ```js

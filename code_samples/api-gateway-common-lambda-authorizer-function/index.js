@@ -8,33 +8,10 @@
  *
  */
 
-
-/**
- * Helper function to generate an IAM policy.
- */
-let generatePolicy = function(principalId, effect, resource) {
-    let authResponse = {};
-
-    authResponse.principalId = principalId;
-
-    if (effect && resource) {
-        var policyDocument = {};
-        policyDocument.Version = '2012-10-17';
-        policyDocument.Statement = [];
-        var statementOne = {};
-        statementOne.Action = 'execute-api:Invoke';
-        statementOne.Effect = effect;
-        statementOne.Resource = resource;
-        policyDocument.Statement[0] = statementOne;
-        authResponse.policyDocument = policyDocument;
-    }
-
-    return authResponse;
-};
 /**
  * Verifies a JWT token and check Cognito groups.
  *
- * The JWT access token is verified using the aws-jwt-verify  JavaScript library from the AWS Labs to verify JWTs.
+ * The JWT access token is verified using the aws-jwt-verify  JavaScript library developed by the AWS Labs.
  *
  * References:
  * https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html
@@ -43,7 +20,7 @@ let generatePolicy = function(principalId, effect, resource) {
  * https://github.com/awslabs/aws-jwt-verify
  *
  */
-exports.handler =  async(event, context, callback) => {
+exports.handler =  async(event, _context, callback) => {
     let token = event.authorizationToken;
     console.log(token);
 
@@ -114,7 +91,7 @@ function parseJwt (token) {
     }).join(''));
 
     return JSON.parse(jsonPayload);
-};
+}
 
 
 /**
@@ -125,3 +102,26 @@ function decode(base64Encoded) {
     console.log(converted);
     return converted;
 }
+
+/**
+ * Helper function to generate an IAM policy.
+ */
+let generatePolicy = function(principalId, effect, resource) {
+    let authResponse = {};
+
+    authResponse.principalId = principalId;
+
+    if (effect && resource) {
+        var policyDocument = {};
+        policyDocument.Version = '2012-10-17';
+        policyDocument.Statement = [];
+        var statementOne = {};
+        statementOne.Action = 'execute-api:Invoke';
+        statementOne.Effect = effect;
+        statementOne.Resource = resource;
+        policyDocument.Statement[0] = statementOne;
+        authResponse.policyDocument = policyDocument;
+    }
+
+    return authResponse;
+};

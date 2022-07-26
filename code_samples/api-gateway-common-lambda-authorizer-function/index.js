@@ -1,5 +1,5 @@
 /**
- * Token-based authorizer to allow only JWT access tokens issued for the user pool
+ * Token-based lambda authorizer function to allow only JWT access tokens issued for the user pool
  * configured as lambda environment variable COGNITO_USER_POOL_ID and the list of
  * client ids configured as lambda environment variable COGNITO_USER_POOL_ID.
  *

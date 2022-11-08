@@ -26,6 +26,23 @@ A Cognito identity pool should be created and associated with the IAM Role creat
 
 1) Login to JupyterHub to launch a JupyterLab 
 2) Upload the Cognito-Identity-Pool-S3-Access.ipynb
-3) Run -> Run All Cells
-4) Enter the Cognito username and password when prompted
-5) Observe the list of S3 buckets at the end of the Jupyter Notebook
+3) Update the following constants
+```
+# Obtain the Cognito identity pool ID from the Unity Common Services Team
+IDENTITY_POOL_ID = ''
+
+# You AWS Account ID
+AWS_ACCOUNT_ID = ''
+
+# Obtain the Cognito user pool ID from the Unity Common Services Team
+COGNITO_USER_POOL_ID = ''
+
+# Obtain the Cognito Client ID relevant to your usecase from the Unity Common Services Team
+COGNITO_CLIENT_ID = ''
+
+# AWS Region
+REGION = 'us-west-2'
+```
+4) Run -> Run All Cells
+5) Enter the Cognito username and password when prompted
+6) Observe the list of S3 buckets at the end of the Jupyter Notebook

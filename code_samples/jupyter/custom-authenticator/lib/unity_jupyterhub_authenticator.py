@@ -5,6 +5,10 @@ This code is implemented based on https://oauthenticator.readthedocs.io/en/lates
 import json
 import base64
 
+# https://pyjwt.readthedocs.io/en/stable/
+import jwt
+import time
+
 from jupyterhub.auth import LocalAuthenticator
 from tornado.auth import OAuth2Mixin
 from tornado.httpclient import AsyncHTTPClient, HTTPError, HTTPRequest
@@ -32,6 +36,9 @@ class UnityOAuthenticator(OAuthenticator):
         spawner.environment['UNITY_COGNITO_ACCESS_TOKEN'] = auth_state['access_token']
         spawner.environment['UNITY_COGNITO_ID_TOKEN'] = auth_state['id_token']
         spawner.environment['UNITY_COGNITO_REFRESH_TOKEN'] = auth_state['refresh_token']
+
+        epoch_seconds = int(time.time())
+        spawner.environment['UNITY_COGNITO_ACCESS_TOKEN_EXPIRY'] = auth_state['access_token_expires_in'] + epoch_seconds
 
     async def authenticate(self, handler, data=None):
         # Exchange the OAuth code for an Access Token
@@ -62,6 +69,7 @@ class UnityOAuthenticator(OAuthenticator):
             access_token = resp_json['access_token']
             id_token = resp_json['id_token']
             refresh_token = resp_json['refresh_token']
+            access_token_expires_in = resp_json['expires_in']
         elif 'error_description' in resp_json:
             raise HTTPError(
                 403,
@@ -90,5 +98,6 @@ class UnityOAuthenticator(OAuthenticator):
                 'access_token': access_token,
                 'id_token': id_token,
                 'refresh_token': refresh_token,
+                'access_token_expires_in': access_token_expires_in,
             },
         }

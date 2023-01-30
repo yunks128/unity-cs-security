@@ -17,6 +17,8 @@ if current_epoch_seconds < unity_cognito_access_token_expiry:
     
     # Get a new token
     client = boto3.client('cognito-idp', region_name='us-west-2')
+    
+    refresh_token = os.environ.get('UNITY_COGNITO_REFRESH_TOKEN')
 
     # Refresh Cognito tokens
     response = client.initiate_auth(

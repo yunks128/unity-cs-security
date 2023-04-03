@@ -14,8 +14,8 @@ An IAM role was created with permission to access S3 buckets.
 ### Cognito User Pool 
 
 A Cognito user pool should be available with,
-a) At least one App Client (The client ID of this client will be used in  the Jupyter Notebook)
-b) A user group associated with the IAM role created above
+1) At least one App Client (The client ID of this client will be used in  the Jupyter Notebook)
+2) A user group associated with the IAM role created above
 
 ### Identity Pool
 

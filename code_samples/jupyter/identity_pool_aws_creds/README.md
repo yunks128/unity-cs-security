@@ -54,7 +54,7 @@ REGION = 'us-west-2'
 
 Note:
 
-In above Get-AWS-Creds-From-Cognito-ID-Token.ipynb Jupyter Notebook,an ID token is obtained using the 
+In above Get-AWS-Creds-From-Cognito-ID-Token.ipynb Jupyter Notebook, an ID token is obtained using the 
 USER_PASSWORD_AUTH auth flow of client_idp.initiate_auth(). This code interactively requests for
 username and password to obtain the ID token. This code is only added for demonstration purposes and 
 usually the Cognito ID token should be available as the UNITY_COGNITO_ID_TOKEN environment variable, 

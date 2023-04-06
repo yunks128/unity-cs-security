@@ -24,8 +24,8 @@ A Cognito identity pool should be created and associated with the IAM Role creat
 
 ## Jupyter Notebook on Jupyter Lab
 
-The Get-AWS-Creds-From-Cognito-ID-Token.ipynb Jupyter Notebook provides a python function called
-get_aws_creds_from_cognito_id_token(cognito_identity_pool_id, cognito_user_pool_id, aws_account_id, region, cognito_id_token).
+The `Get-AWS-Creds-From-Cognito-ID-Token.ipynb` Jupyter Notebook provides a python function called
+`get_aws_creds_from_cognito_id_token(cognito_identity_pool_id, cognito_user_pool_id, aws_account_id, region, cognito_id_token)`.
 This function is used to obtain temporary AWS credentials using a Cognito ID token (check the Note below
 for more information).
 
@@ -54,10 +54,10 @@ REGION = 'us-west-2'
 
 Note:
 
-In above Get-AWS-Creds-From-Cognito-ID-Token.ipynb Jupyter Notebook, an ID token is obtained using the 
+In above `Get-AWS-Creds-From-Cognito-ID-Token.ipynb` Jupyter Notebook, an ID token is obtained using the 
 USER_PASSWORD_AUTH auth flow of client_idp.initiate_auth(). This code interactively requests for
 username and password to obtain the ID token. This code is only added for demonstration purposes and 
-usually the Cognito ID token should be available as the UNITY_COGNITO_ID_TOKEN environment variable, 
-which is stored during the JupyterLab spawn or an access token refresh. This UNITY_COGNITO_ID_TOKEN 
+usually the Cognito ID token should be available as the `UNITY_COGNITO_ID_TOKEN` environment variable, 
+which is stored during the JupyterLab spawn or an access token refresh. This `UNITY_COGNITO_ID_TOKEN` 
 environment variable can be updated using the get_unity_cognito_access_token() function defined in 
 the ../get_and_refresh_tokens/Refresh-Cognito-Tokens.ipynb
